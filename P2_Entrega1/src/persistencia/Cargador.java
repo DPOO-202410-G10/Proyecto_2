@@ -228,8 +228,8 @@ public class Cargador {
 			if (infoSubasta[1].equals("Pendiente")) {
 				subasta = new Subasta(infoSubasta[0]);
 			} else if (infoSubasta[1].equals("Activa")) {
-				subasta = new Subasta(infoSubasta[0], infoSubasta[1], historialActual, piezasSubasta(inventario),
-						clientesSubasta(clientes), historiales);
+				subasta = new Subasta(infoSubasta[0], infoSubasta[1], historialActual, clientesPiezasSubasta(clientes, inventario)[1],
+						clientesPiezasSubasta(clientes, inventario)[0], historiales);
 			}
 			br.close();
 		}
@@ -238,38 +238,28 @@ public class Cargador {
 	
 	//<x========================================================================================================x>
 	
-	private Map<String, Cliente> clientesSubasta(Map<String, Cliente> clientes) throws IOException{
+	private Map[] clientesPiezasSubasta(Map<String, Cliente> clientes, Inventario inventario) throws IOException{
 		Map<String, Cliente> usuariosSubasta = new HashMap<String, Cliente>();
-		FileReader file = new FileReader("data" + File.separator + "piezas_clientes_subasta.csv");
-		BufferedReader br = new BufferedReader(file);
-		String l = br.readLine(); l = br.readLine();
-		String[] linea;
-		
-		while (l != null && !l.split(";")[1].equals("")) {
-			linea = l.split(";");
-			usuariosSubasta.put(linea[1], clientes.get(linea[1]));
-			l = br.readLine();
-		}
-		br.close();
-		return usuariosSubasta;
-	}
-	
-	//<x========================================================================================================x>
-	
-	private Map<String, Pieza> piezasSubasta(Inventario inventario) throws IOException{
 		Map<String, Pieza> piezaSubasta = new HashMap<String, Pieza>();
 		FileReader file = new FileReader("data" + File.separator + "piezas_clientes_subasta.csv");
 		BufferedReader br = new BufferedReader(file);
 		String l = br.readLine(); l = br.readLine();
 		String[] linea;
 		
-		while (l != null && !(l.split(";")[0]).equals("")) {
+		while (l != null) {
 			linea = l.split(";");
-			piezaSubasta.put(linea[0], inventario.getPieza(linea[0]));
+			if (linea[0].equals("Cliente")) {
+				usuariosSubasta.put(linea[1], clientes.get(linea[1]));
+			} else if (linea[0].equals("Pieza")) {
+				piezaSubasta.put(linea[0], inventario.getPieza(linea[0]));
+			}
 			l = br.readLine();
 		}
 		br.close();
-		return piezaSubasta;
+		Map[] mapas = new Map[]{};
+		mapas[0] = usuariosSubasta;
+		mapas[1] = piezaSubasta;
+		return mapas;
 	}
 //<x=============================================================================================================x>
 }

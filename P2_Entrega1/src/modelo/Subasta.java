@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +64,18 @@ public class Subasta {
     
     public boolean estaCliente(String idCliente) {
     	return this.clientes.containsKey(idCliente);
+    }
+    
+    public Collection<Historial> getHistoriales(){
+    	return this.historiales.values();
+    }
+    
+    public Collection<String> getCodigoPiezas(){
+    	return this.piezas.keySet();
+    }
+    
+    public Collection<String> getCodigoClientes(){
+    	return this.clientes.keySet();
     }
 //<x==============================================================================================================x>
 }

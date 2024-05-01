@@ -6,8 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
 
+import modelo.Historial;
 import modelo.Pago;
 import modelo.Pieza;
+import modelo.Subasta;
 import usuarios.Cajero;
 import usuarios.Cliente;
 import usuarios.Operador;
@@ -70,6 +72,39 @@ public class Guardador {
 		writer.close();
 	}
 	
+	
+	public static void guardarHistorial(String rutaArchivo, Subasta subasta) throws IOException, Exception {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		for (Historial historial: subasta.getHistoriales()) {
+			writer.write(historial.toString());
+		}
+		writer.close();
+	}
+	
+	
+	public static void resetSubastaActual(String rutaArchivo, Subasta subasta) throws Exception {
+		eliminarArchivo(rutaArchivo);
+		crearArchivo(rutaArchivo);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		writer.write("idSubasta;estadoSubasta");
+		writer.write(subasta.toString());
+		writer.write("idHistorial;idPieza;[valor:idCliente]");
+		writer.close();
+	}
+
+	
+	public static void guardarPiezasClientes(String rutaArchivo, Collection<Pieza> piezas, Collection<Cliente> clientes) throws Exception {
+		eliminarArchivo(rutaArchivo);
+		crearArchivo(rutaArchivo);
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		for (Pieza pieza: piezas) {
+			writer.write("Pieza"+pieza.getIdPieza());
+		}
+		for (Cliente cliente: clientes) {
+			writer.write("Cliente"+cliente.getID());
+		}
+		writer.close();
+	}
 	
 	
 	
