@@ -1,14 +1,17 @@
 package persistencia;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import modelo.Historial;
 import modelo.Inventario;
 import modelo.Pago;
 import modelo.Pieza;
+import modelo.Subasta;
 import piezas.Escultura;
 import piezas.Fotografia;
 import piezas.Impresion;
@@ -191,6 +194,82 @@ public class Cargador {
 		br.close();
 		
 		return pagos;
+	}
+	
+	//<x========================================================================================================x>
+	
+	public Subasta cargarSubasta(String rutaArchivo, Map<String, Cliente> clientes, Inventario inventario) throws IOException {
+		Subasta subasta = null;
+		
+		FileReader file = new FileReader(rutaArchivo);
+		BufferedReader br = new BufferedReader(file);
+		String l = br.readLine(); String[] infoSubasta = br.readLine().split(";"); l = br.readLine(); l = br.readLine();
+		if (infoSubasta != null) { 
+			String[] linea;
+			Map<String, Historial> historiales = new HashMap<String, Historial>();
+			Historial historialActual = null;
+			
+			while(l != null) {
+				linea = l.split(";");
+				Map<Integer, String> pujas = new HashMap<Integer, String>();
+				for (String pareja: linea[2].split(",")) {
+					String[] datosPuja = pareja.split(":");
+					pujas.put(Integer.parseInt(datosPuja[0]), datosPuja[1]);
+				}
+				Historial historial = new Historial(linea[0], inventario.getPieza(linea[1]), pujas);
+				
+				if (historialActual == null) {
+					historialActual = historial;
+				} else {
+					historiales.put(linea[0], historial);
+				}
+				l = br.readLine();
+			}
+			if (infoSubasta[1].equals("Pendiente")) {
+				subasta = new Subasta(infoSubasta[0]);
+			} else if (infoSubasta[1].equals("Activa")) {
+				subasta = new Subasta(infoSubasta[0], infoSubasta[1], historialActual, piezasSubasta(inventario),
+						clientesSubasta(clientes), historiales);
+			}
+			br.close();
+		}
+		return subasta;
+	}
+	
+	//<x========================================================================================================x>
+	
+	private Map<String, Cliente> clientesSubasta(Map<String, Cliente> clientes) throws IOException{
+		Map<String, Cliente> usuariosSubasta = new HashMap<String, Cliente>();
+		FileReader file = new FileReader("data" + File.separator + "piezas_clientes_subasta.csv");
+		BufferedReader br = new BufferedReader(file);
+		String l = br.readLine(); l = br.readLine();
+		String[] linea;
+		
+		while (l != null && !l.split(";")[1].equals("")) {
+			linea = l.split(";");
+			usuariosSubasta.put(linea[1], clientes.get(linea[1]));
+			l = br.readLine();
+		}
+		br.close();
+		return usuariosSubasta;
+	}
+	
+	//<x========================================================================================================x>
+	
+	private Map<String, Pieza> piezasSubasta(Inventario inventario) throws IOException{
+		Map<String, Pieza> piezaSubasta = new HashMap<String, Pieza>();
+		FileReader file = new FileReader("data" + File.separator + "piezas_clientes_subasta.csv");
+		BufferedReader br = new BufferedReader(file);
+		String l = br.readLine(); l = br.readLine();
+		String[] linea;
+		
+		while (l != null && !(l.split(";")[0]).equals("")) {
+			linea = l.split(";");
+			piezaSubasta.put(linea[0], inventario.getPieza(linea[0]));
+			l = br.readLine();
+		}
+		br.close();
+		return piezaSubasta;
 	}
 //<x=============================================================================================================x>
 }

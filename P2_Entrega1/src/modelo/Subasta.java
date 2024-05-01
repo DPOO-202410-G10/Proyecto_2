@@ -9,15 +9,17 @@ public class Subasta {
 	//< Atributos >
     private String idSubasta;
     private String estadoActivo;
+    private Historial historialActual;
     private Map<String, Pieza> piezas;
     private Map<String, Cliente> clientes;
     private Map<String, Historial> historiales;
 
     
     //< Contructor >
-    public Subasta(String idSubasta, String estadoActivo, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
+    public Subasta(String idSubasta, String estadoActivo, Historial historialActual, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
         this.idSubasta = idSubasta;
         this.estadoActivo = estadoActivo;
+        this.historialActual = historialActual;
         this.piezas = piezas;
         this.clientes = clientes;
         this.historiales = historiales;

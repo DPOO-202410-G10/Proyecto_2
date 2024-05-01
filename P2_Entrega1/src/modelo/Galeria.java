@@ -14,15 +14,15 @@ import usuarios.Propietario;
 
 public class Galeria {
 	//< Atributos >
-	String nombre;
-	Administrador administrador;
-	Inventario inventario;
-	Map<String, Cliente> clientes;
-	Map<String, Pago> pagos;
-	Map<String, Subasta> subastas;
-	Map<String, Cajero> cajeros;
-	Map<String, Operador> operadores;
-	Map<String, Propietario> propietarios;
+	private String nombre;
+	private Administrador administrador;
+	private Inventario inventario;
+	private Map<String, Cliente> clientes;
+	private Map<String, Pago> pagos;
+	private Subasta subasta;
+	private Map<String, Cajero> cajeros;
+	private Map<String, Operador> operadores;
+	private Map<String, Propietario> propietarios;
 	
 	
 	
