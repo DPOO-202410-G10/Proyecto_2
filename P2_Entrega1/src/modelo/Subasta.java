@@ -16,7 +16,7 @@ public class Subasta {
     
     //< Contructor >
     public Subasta(String idSubasta, String estadoActivo, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
-        this.idSubasta = idSubasta;
+        this.setIdSubasta(idSubasta);
         this.estadoActivo = estadoActivo;
         this.piezas = piezas;
         this.clientes = clientes;
@@ -25,7 +25,7 @@ public class Subasta {
     
     //< Contructor >
     public Subasta(String idSubasta) {
-    	this.idSubasta = idSubasta;
+    	this.setIdSubasta(idSubasta);
     	this.estadoActivo = "Pendiente";
     	this.historiales = new HashMap<String, Historial>();
     }
@@ -63,6 +63,30 @@ public class Subasta {
     	return this.clientes.containsKey(idCliente);
     }
 //<x==============================================================================================================x>
+
+	public Map<String, Historial> getHistoriales() {
+		return historiales;
+	}
+
+	public void setHistoriales(Map<String, Historial> historiales) {
+		this.historiales = historiales;
+	}
+
+	public Map<String, Pieza> getPiezas() {
+		return piezas;
+	}
+
+	public void setPiezas(Map<String, Pieza> piezas) {
+		this.piezas = piezas;
+	}
+
+	public String getIdSubasta() {
+		return idSubasta;
+	}
+
+	public void setIdSubasta(String idSubasta) {
+		this.idSubasta = idSubasta;
+	}
 }
 
 		

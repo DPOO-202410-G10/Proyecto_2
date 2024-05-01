@@ -18,7 +18,6 @@ public class Operador extends Usuario{
 	
 	private Map<String, Pieza> piezas;
 	private Subasta subasta;
-	private Map<String, Historial> historiales;
 	private String tituloPieza;
 //< Metodos >=====================================================================================================x>
 	public void crearHistorial(String tituloPieza) {
@@ -46,7 +45,7 @@ public class Operador extends Usuario{
 	        return;
 		}
 		Pieza pieza = null;
-		for (Pieza p: subasta.piezas.values()) {
+		for (Pieza p: subasta.getPiezas().values()) {
 			if (p.getTitulo().equals(tituloPieza)) {
 				pieza = p;
 				break;
@@ -57,8 +56,8 @@ public class Operador extends Usuario{
 			return;
 		}
 		Historial historial = null;
-		for (Historial h: subasta.historiales.values()) {
-			if (h.pieza.equals(pieza)) {
+		for (Historial h: subasta.getHistoriales().values()) {
+			if (h.getPieza().equals(pieza)) {
 				historial = h;
 				break;
 			}
@@ -75,7 +74,7 @@ public class Operador extends Usuario{
 	
 	public String[] eliminarPuja() {
 		Pieza pieza = null;
-		for (Pieza p: subasta.piezas.values()) {
+		for (Pieza p: subasta.getPiezas().values()) {
 			if (p.getTitulo().equals(tituloPieza)) {
 				pieza = p;
 				break;
@@ -86,8 +85,8 @@ public class Operador extends Usuario{
 			return null;
 		}
 		Historial historial = null;
-		for (Historial h: subasta.historiales.values()) {
-			if (h.pieza.equals(pieza)) {
+		for (Historial h: subasta.getHistoriales().values()) {
+			if (h.getPieza().equals(pieza)) {
 				historial = h;
 				break;
 			}
@@ -96,7 +95,7 @@ public class Operador extends Usuario{
 			System.out.println("No se encontró un historial para la pieza: " + tituloPieza);
 			return null;
 		}
-		Map<Integer, String> historialMap = historial.historial;
+		Map<Integer, String> historialMap = historial.getHistorial();
 		int ultimaPuja = Collections.max(historialMap.keySet());
 		String idComprador = historialMap.get(ultimaPuja);
 		

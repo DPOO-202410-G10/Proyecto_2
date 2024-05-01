@@ -15,7 +15,7 @@ public class Historial {
     //< Constructor >
     public Historial(String idHistorial, Pieza pieza, Map<Integer, String> historial) {
     	this.idHistorial = idHistorial;
-        this.pieza = pieza;
+        this.setPieza(pieza);
         this.historial = historial;     
     }
     
@@ -34,4 +34,28 @@ public class Historial {
     	return this.idHistorial;
     }
 //<x==============================================================================================================x>
+
+
+
+	public Pieza getPieza() {
+		return pieza;
+	}
+
+
+
+	public void setPieza(Pieza pieza) {
+		this.pieza = pieza;
+	}
+
+
+
+	public Map<Integer, String> getHistorial() {
+		return historial;
+	}
+
+
+
+	public void setHistorial(Map<Integer, String> historial) {
+		this.historial = historial;
+	}
 }
