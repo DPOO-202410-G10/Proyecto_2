@@ -42,6 +42,7 @@ public class Galeria {
 		this.inventario = new Inventario(cargador);
 		this.propietarios = cargador.cargarPropietarios("data" + File.separator + "propietarios.csv", this.inventario);
 		this.pagos = cargador.cargarPagos("data" + File.separator + "pagos.csv", this.clientes, this.inventario);
+		this.subasta = cargador.cargarSubasta("data" + File.separator + "subasta.csv", this.clientes, this.inventario);
 	}
 //<x=============================================================================================================x>
 	
