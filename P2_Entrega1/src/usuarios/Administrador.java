@@ -19,7 +19,7 @@ public class Administrador extends Usuario {
 	
 //< Metodos >=====================================================================================================x>
 	public void crearSubasta(Map<String, Cliente> clientes, Map<String, Pieza> piezas, Subasta subastas) {
-		String idSubasta = subastas.idSubasta;
+		String idSubasta = subastas.getIdSubasta();
 		Subasta subasta = new Subasta(idSubasta);
 		subasta.activarSubasta(piezas, clientes);
 	}
