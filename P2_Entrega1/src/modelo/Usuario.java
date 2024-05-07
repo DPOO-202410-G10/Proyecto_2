@@ -17,7 +17,7 @@ public abstract class Usuario {
 	
 	
 //< Metodos >=====================================================================================================x>
-	protected boolean login(String contrasenia) {
+	public boolean login(String contrasenia) {
 		if (contrasenia.equals(this.contrasenia)) {
 			return true;
 		}

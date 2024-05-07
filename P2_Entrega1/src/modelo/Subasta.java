@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ public class Subasta {
 	//< Atributos >
     private String idSubasta;
     private String estadoActivo;
+    private Historial historialActual;
     private Map<String, Pieza> piezas;
     private Map<String, Cliente> clientes;
     private Map<String, Historial> historiales;
@@ -17,7 +19,12 @@ public class Subasta {
     //< Contructor >
     public Subasta(String idSubasta, String estadoActivo, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
         this.setIdSubasta(idSubasta);
+    }
+    
+    public Subasta(String idSubasta, String estadoActivo, Historial historialActual, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
+        this.idSubasta = idSubasta;
         this.estadoActivo = estadoActivo;
+        this.historialActual = historialActual;
         this.piezas = piezas;
         this.clientes = clientes;
         this.historiales = historiales;
@@ -62,11 +69,19 @@ public class Subasta {
     public boolean estaCliente(String idCliente) {
     	return this.clientes.containsKey(idCliente);
     }
-//<x==============================================================================================================x>
-
-	public Map<String, Historial> getHistoriales() {
+    
+    public Map<String, Historial> getHistoriales() {
 		return historiales;
 	}
+    
+    public Collection<String> getCodigoPiezas(){
+    	return this.piezas.keySet();
+    }
+    
+    public Collection<String> getCodigoClientes(){
+    	return this.clientes.keySet();
+    }
+//<x==============================================================================================================x>
 
 	public void setHistoriales(Map<String, Historial> historiales) {
 		this.historiales = historiales;
