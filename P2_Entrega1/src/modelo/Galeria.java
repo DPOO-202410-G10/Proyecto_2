@@ -15,11 +15,11 @@ import usuarios.Propietario;
 public class Galeria {
 	//< Atributos >
 	private String nombre;
+	private Subasta subasta;
 	private Administrador administrador;
 	private Inventario inventario;
 	private Map<String, Cliente> clientes;
 	private Map<String, Pago> pagos;
-	private Subasta subasta;
 	private Map<String, Cajero> cajeros;
 	private Map<String, Operador> operadores;
 	private Map<String, Propietario> propietarios;
@@ -49,28 +49,24 @@ public class Galeria {
 	
 	
 //< Getters >====================================================================================================x>
-	public Administrador getAdmin(String idAdmin) {
-		return this.administrador;
-	}
-	
-	public Cliente getCliente(String idCliente) {
-		return this.clientes.get(idCliente);
+	public Usuario getUsuario(String idUsuario) {
+		if (idUsuario.equals(this.administrador.getID())) {
+			return this.administrador;
+		} else if (this.clientes.containsKey(idUsuario)) {
+			return this.clientes.get(idUsuario);
+		} else if (this.cajeros.containsKey(idUsuario)) {
+			return this.cajeros.get(idUsuario);
+		} else if (this.operadores.containsKey(idUsuario)) {
+			return this.operadores.get(idUsuario);
+		} else if (this.propietarios.containsKey(idUsuario)) {
+			return this.propietarios.get(idUsuario);
+		} else {
+			return null;
+		}
 	}
 	
 	public Inventario getInventario() {
 		return this.inventario;
-	}
-	
-	public Cajero getCajero(String idCajero) {
-		return this.cajeros.get(idCajero);
-	}
-	
-	public Operador getOperador(String idOperador) {
-		return this.operadores.get(idOperador);
-	}
-	
-	public Propietario getPropietario(String idPropietario) {
-		return this.propietarios.get(idPropietario);
 	}
 	
 	public Pago getPago(String idPago) {
@@ -102,7 +98,7 @@ public class Galeria {
 					this.propietarios.values());
 			}
 		} catch(Exception e) {
-			e.getMessage();
+			System.out.println(e.getMessage());
 		}
 	}
 	

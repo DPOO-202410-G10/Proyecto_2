@@ -17,6 +17,13 @@ import usuarios.Propietario;
 
 public class Guardador {
 	
+	public static void guardarInformacion(String rutaArchivo, String informacion) throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		writer.write(informacion);
+		writer.close();
+	}
+	
+	
 	public static void guardarPiezas(String rutaArchivo, Collection<Pieza> piezas) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
 		for (Pieza pieza: piezas) {
