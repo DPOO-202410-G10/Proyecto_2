@@ -38,7 +38,7 @@ public abstract class Pieza {
 	}
 	
 	
-	
+
 //< Getters >=====================================================================================================x>
 	public String getIdPieza() {
 		return idPieza;

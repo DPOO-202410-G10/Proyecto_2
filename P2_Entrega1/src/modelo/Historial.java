@@ -1,37 +1,45 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Historial {
-	//< Atributos >
-	private String idHistorial;
-    private Pieza pieza;
-    private Map<Integer, String> historial; 
-    
-    
-    //< Constructor >
-    public Historial(String idHistorial, Pieza pieza, Map<Integer, String> historial) {
-    	this.idHistorial = idHistorial;
-        this.pieza = pieza;
-        this.historial = historial;     
-    }
-    
-    
-    
-//< Metodos >=====================================================================================================x>
-    public void agregarAlMapa(int valorPuja, String idComprador) {
-        historial.put(valorPuja, idComprador);
-    }
-//<x==============================================================================================================x>
-    
-    
+  private static int cantidadHistoriales = 0;
+  private final Integer idHistorial;
+  private final Pieza pieza;
+  private final Map<Double, String> compradorPorPuja;
+  private final double valorPuja;
 
-//< Getters >=====================================================================================================x>
-    public String getId() {
-    	return this.idHistorial;
+
+
+  public Historial(Pieza pieza, double valorPuja) {
+    this.pieza = pieza;
+    this.compradorPorPuja = new HashMap<>();
+    this.valorPuja = valorPuja;
+    this.idHistorial = cantidadHistoriales + 1;
+    cantidadHistoriales += 1;
+  }
+
+
+  public void agregarAlMapa(double valorPuja, String idComprador) {
+    if (valorPuja > this.valorPuja) compradorPorPuja.put(valorPuja, idComprador);
+  }
+
+  public String getIdComprador() {
+    double maximo = Double.MIN_VALUE;
+    String id = null;
+    for (Map.Entry<Double, String> puja : compradorPorPuja.entrySet()) {
+      if (puja.getKey() > maximo) {
+        maximo = puja.getKey();
+        id = puja.getValue();
+      }
     }
-//<x==============================================================================================================x>
+
+    return id;
+  }
+
+  public Pieza getPieza() {
+    return pieza;
+  }
 }
+//acabado
