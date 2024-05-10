@@ -1,70 +1,55 @@
 package modelo;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import usuarios.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Subasta {
-	//< Atributos >
-    private String idSubasta;
-    private String estadoActivo;
-    private Map<String, Pieza> piezas;
-    private Map<String, Cliente> clientes;
-    private Map<String, Historial> historiales;
+    private static int cantidadSubastas = 0;
+    private int idSubasta;
+    private List<Pieza> piezas;
+    private List<Historial> historiales;
 
-    
-    //< Contructor >
-    public Subasta(String idSubasta, String estadoActivo, Map<String, Pieza> piezas, Map<String, Cliente> clientes, Map<String, Historial> historiales) {
-        this.idSubasta = idSubasta;
-        this.estadoActivo = estadoActivo;
-        this.piezas = piezas;
-        this.clientes = clientes;
-        this.historiales = historiales;
-    }
-    
-    //< Contructor >
-    public Subasta(String idSubasta) {
-    	this.idSubasta = idSubasta;
-    	this.estadoActivo = "Pendiente";
-    	this.historiales = new HashMap<String, Historial>();
-    }
-    
+    public Subasta(List<Pieza> piezasASubastar) {
+        this.idSubasta = cantidadSubastas + 1;
+        this.piezas = piezasASubastar;
+        this.historiales = new ArrayList<>();
 
-    
-//< Metodos >=====================================================================================================x>
-    public void activarSubasta(Map<String, Pieza> piezas, Map<String, Cliente> clientes) {
-    	this.estadoActivo = "Activo";
-    	this.piezas = piezas;
-    	this.clientes = clientes;
+        for (Pieza p: piezas) {
+            Historial historial = new Historial(p, p.getValorInicial());
+            this.historiales.add(historial);
+        }
+
+        cantidadSubastas++;
     }
-    
+
+    public List<Pieza> getPiezas() {
+        return piezas;
+    }
+
+    public List<Historial> getHistoriales() {
+        return historiales;
+    }
+
+    public Integer getId() {
+        return this.idSubasta;
+    }
+
     public void addPieza(Pieza pieza) {
-        this.piezas.put(pieza.getIdPieza(), pieza);
+        this.piezas.add(pieza);
     }
 
-    public void removePieza(String idPieza) {
-        this.piezas.remove(idPieza);
+    public void removePieza(Pieza pieza) {
+        this.piezas.remove(pieza);
     }
 
     public void addHistorial(Historial historial) {
-        this.historiales.put(historial.getId(), historial);
+        this.historiales.add(historial);
     }
 
-    public void removeHistorial(String idHistorial) {
-        this.historiales.remove(idHistorial);
+    public void removeHistorial(Historial historial) {
+        this.historiales.remove(historial);
     }
-    
-    public String getEstado() {
-    	return this.estadoActivo;
-    }
-    
-    public boolean estaCliente(String idCliente) {
-    	return this.clientes.containsKey(idCliente);
-    }
-//<x==============================================================================================================x>
+
+
 }
-
-		
-
-
+//acabado
