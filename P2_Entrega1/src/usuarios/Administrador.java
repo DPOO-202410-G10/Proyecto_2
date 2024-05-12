@@ -2,9 +2,11 @@ package usuarios;
 
 import java.util.Map;
 
+import modelo.Historial;
 import modelo.Pieza;
 import modelo.Usuario;
 import usuarios.Cliente;
+import modelo.Subasta;
 
 public class Administrador extends Usuario {
 	
@@ -16,20 +18,22 @@ public class Administrador extends Usuario {
 
 	
 //< Metodos >=====================================================================================================x>
-	public void crearSubasta(Map<String, Cliente> clientes, Map<String, Pieza> piezas) {
-		//TODO: FALTA CREAR MÉTODO
+	public void crearSubasta(Map<String, Cliente> clientes, Map<String, Pieza> piezas, Subasta subastas) {
+		String idSubasta = subastas.getIdSubasta();
+		Subasta subasta = new Subasta(idSubasta);
+		subasta.activarSubasta(piezas, clientes);
 	}
 	
-	public void registrarPieza() {
-		//TODO: FALTA CREAR METODO
+	public void registrarPieza(Pieza pieza) {
+		System.out.println("Pieza registrada: " + pieza.getTitulo());
 	}
 	
-	public void confirmarVenta() {
-		//TODO: FALTA CREAR METODO
+	public void confirmarVenta(Pieza pieza) {
+		System.out.println("Venta confirmada para la pieza: " + pieza.getTitulo());
 	}
 	
-	public void regresarPieza() {
-		//TODO: FALTA CREAR METODO
+	public void regresarPieza(Pieza pieza) {
+		System.out.println("La siguiente pieza fue devuelta: " + pieza.getTitulo());
 	}
 	
 	public int aumentarNumComprasCliente(Cliente cliente) {

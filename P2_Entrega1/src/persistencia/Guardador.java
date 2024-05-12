@@ -82,7 +82,7 @@ public class Guardador {
 	
 	public static void guardarHistorial(String rutaArchivo, Subasta subasta) throws IOException, Exception {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
-		for (Historial historial: subasta.getHistoriales()) {
+		for (Historial historial: subasta.getHistoriales().values()) {
 			writer.write(historial.toString());
 		}
 		writer.close();

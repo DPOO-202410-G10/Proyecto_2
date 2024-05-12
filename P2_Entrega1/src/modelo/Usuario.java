@@ -17,12 +17,11 @@ public abstract class Usuario {
 	
 	
 //< Metodos >=====================================================================================================x>
-	protected void login() {
-		if (idUsuario == getID() && contrasenia == getContrasenia() && nombre == getNombre()) {
-			System.out.println("Login aceptado.");
-		}else {
-			System.out.println("Login rechazado.");
+	public boolean login(String contrasenia) {
+		if (contrasenia.equals(this.contrasenia)) {
+			return true;
 		}
+		return false;
 	}
 //<x==============================================================================================================x>
 

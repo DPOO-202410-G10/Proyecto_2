@@ -73,7 +73,7 @@ public class Galeria {
 		return this.pagos.get(idPago);
 	}
 	
-	public String getNombreGaleria() {
+	public String getNombre() {
 		return this.nombre;
 	}
 //<x=============================================================================================================x>
