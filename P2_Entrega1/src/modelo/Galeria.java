@@ -2,6 +2,7 @@ package modelo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import persistencia.Cargador;
@@ -29,6 +30,8 @@ public class Galeria {
 	//< Constructor >
 	public Galeria(String nombre) {
 		this.nombre = nombre;
+		this.cajeros = new HashMap<String, Cajero>();
+		this.operadores = new HashMap<String, Operador>();
 	}
 	
 	
@@ -49,16 +52,16 @@ public class Galeria {
 	
 	
 //< Getters >====================================================================================================x>
-	public Usuario getUsuario(String idUsuario) {
-		if (idUsuario.equals(this.administrador.getID())) {
+	public Usuario getUsuario(String idUsuario, String tipoUsuario) {
+		if (idUsuario.equals(this.administrador.getID()) && tipoUsuario.equals("Administrador")) {
 			return this.administrador;
-		} else if (this.clientes.containsKey(idUsuario)) {
+		} else if (this.clientes.containsKey(idUsuario) && tipoUsuario.equals("Cliente")) {
 			return this.clientes.get(idUsuario);
-		} else if (this.cajeros.containsKey(idUsuario)) {
+		} else if (this.cajeros.containsKey(idUsuario) && tipoUsuario.equals("Cajero")) {
 			return this.cajeros.get(idUsuario);
-		} else if (this.operadores.containsKey(idUsuario)) {
+		} else if (this.operadores.containsKey(idUsuario) && tipoUsuario.equals("Operador")) {
 			return this.operadores.get(idUsuario);
-		} else if (this.propietarios.containsKey(idUsuario)) {
+		} else if (this.propietarios.containsKey(idUsuario) && tipoUsuario.equals("Propietario")) {
 			return this.propietarios.get(idUsuario);
 		} else {
 			return null;
@@ -81,25 +84,25 @@ public class Galeria {
 	
 	
 //< Adders >=====================================================================================================x>
-	public void addUsuario(Usuario usuario, String tipo) {
+	public void addUsuario(Usuario usuario, String tipo, boolean isModificated) {
 		try {
 			switch (tipo) {
 			case "Cliente":
 				this.clientes.put(usuario.getID(), (Cliente) usuario);
-				Guardador.guardarClientes(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "clientes.csv", 
-					this.clientes.values());
+				if (isModificated) {Guardador.guardarClientes(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "clientes.csv", 
+					this.clientes.values());}
 			case "Cajero":
 				this.cajeros.put(usuario.getID(), (Cajero) usuario);
-				Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
-					this.cajeros.values(), this.operadores.values());
+				if (isModificated) {Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
+					this.cajeros.values(), this.operadores.values());}
 			case "Operador":
 				this.operadores.put(usuario.getID(), (Operador) usuario);
-				Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
-					this.cajeros.values(), this.operadores.values());
+				if (isModificated) {Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
+					this.cajeros.values(), this.operadores.values());}
 			case "Propietario":
 				this.propietarios.put(usuario.getID(), (Propietario) usuario);
-				Guardador.guardarPropietarios(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "propietarios.csv",
-					this.propietarios.values());
+				if (isModificated) {Guardador.guardarPropietarios(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "propietarios.csv",
+					this.propietarios.values());}
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());

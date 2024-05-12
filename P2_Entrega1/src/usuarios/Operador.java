@@ -103,5 +103,10 @@ public class Operador extends Usuario{
 		
 		return new String[] {idComprador, String.valueOf(ultimaPuja)};
 	}
+	
+	@Override
+	public String toString() {
+		return this.idUsuario + ";" + this.contrasenia + ";" + this.nombre + ";Operador";
+	}
 //<x==============================================================================================================x>
 }

@@ -1,10 +1,13 @@
 package usuarios;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import modelo.Historial;
 import modelo.Pieza;
 import modelo.Usuario;
+import persistencia.Guardador;
 import usuarios.Cliente;
 import modelo.Subasta;
 
@@ -43,6 +46,17 @@ public class Administrador extends Usuario {
 		}else {
 			System.out.println("Aumento de compras rechazado.");
 		}return cantidadCompras;
+	}
+	
+	public Usuario registrarEmpleado(String tipo, String id, String clave, String nombre) throws IOException {
+		Usuario usuario;
+		if (tipo.equals("Operador")) {
+			usuario = new Operador(id, clave, nombre);
+		} else {
+			usuario = new Cajero(id, clave, nombre);
+		}
+		Guardador.guardarInformacion("data" + File.separator + "empleados.csv", usuario.toString());
+		return usuario;
 	}
 //<x==============================================================================================================x>
 }

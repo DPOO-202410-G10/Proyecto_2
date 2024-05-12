@@ -25,5 +25,10 @@ public class Cajero extends Usuario {
 		System.out.println("Se ha generado un pago por la pieza " + piezas.getTitulo() + " .");
 	}
 	
+	
+	@Override
+	public String toString() {
+		return this.idUsuario + ";" + this.contrasenia + ";" + this.nombre + ";Cajero";
+	}
 //<x==============================================================================================================x>
 }
