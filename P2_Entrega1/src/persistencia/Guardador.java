@@ -16,14 +16,14 @@ import usuarios.Operador;
 import usuarios.Propietario;
 
 public class Guardador {
-	
+
 	public static void guardarInformacion(String rutaArchivo, String informacion) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
 		writer.write(informacion);
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarPiezas(String rutaArchivo, Collection<Pieza> piezas) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
 		for (Pieza pieza: piezas) {
@@ -31,8 +31,8 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarEmpleados(String rutaArchivo, Collection<Cajero> cajeros, Collection<Operador> operadores) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -45,8 +45,8 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarClientes(String rutaArchivo, Collection<Cliente> clientes) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -56,8 +56,8 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarPropietarios(String rutaArchivo, Collection<Propietario> propietarios) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -67,8 +67,8 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarPagos(String rutaArchivo, Collection<Pago> pagos) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -78,17 +78,17 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void guardarHistorial(String rutaArchivo, Subasta subasta) throws IOException, Exception {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
-		for (Historial historial: subasta.getHistoriales()) {
+		for (Historial historial: subasta.getHistoriales().values()) {
 			writer.write(historial.toString());
 		}
 		writer.close();
 	}
-	
-	
+
+
 	public static void resetSubastaActual(String rutaArchivo, Subasta subasta) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -99,7 +99,7 @@ public class Guardador {
 		writer.close();
 	}
 
-	
+
 	public static void guardarPiezasClientes(String rutaArchivo, Collection<Pieza> piezas, Collection<Cliente> clientes) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
@@ -112,16 +112,16 @@ public class Guardador {
 		}
 		writer.close();
 	}
-	
-	
-	
+
+
+
 	private static void eliminarArchivo(String rutaArchivo) throws Exception {
 		File archivo = new File(rutaArchivo);
 		if (!archivo.delete()) {
 			throw new Exception("El archivo no se puedo eliminar");
 		}
 	}
-	
+
 	private static void crearArchivo(String rutaArchivo) throws IOException, Exception {
 		File archivo = new File(rutaArchivo);
 		if(!archivo.createNewFile()) {

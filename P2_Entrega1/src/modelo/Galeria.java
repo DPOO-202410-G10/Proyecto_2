@@ -23,17 +23,17 @@ public class Galeria {
 	private Map<String, Cajero> cajeros;
 	private Map<String, Operador> operadores;
 	private Map<String, Propietario> propietarios;
-	
-	
-	
+
+
+
 	//< Constructor >
 	public Galeria(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
-//< Carga de Datos >=============================================================================================x>
+
+
+
+	//< Carga de Datos >=============================================================================================x>
 	public void cargarDatos() throws IOException {
 		Cargador cargador = new Cargador();
 		this.administrador = cargador.cargarAdmin("data" + File.separator + "administrador.csv");
@@ -45,10 +45,10 @@ public class Galeria {
 		this.subasta = cargador.cargarSubasta("data" + File.separator + "subasta.csv", this.clientes, this.inventario);
 	}
 //<x=============================================================================================================x>
-	
-	
-	
-//< Getters >====================================================================================================x>
+
+
+
+	//< Getters >====================================================================================================x>
 	public Usuario getUsuario(String idUsuario) {
 		if (idUsuario.equals(this.administrador.getID())) {
 			return this.administrador;
@@ -64,56 +64,56 @@ public class Galeria {
 			return null;
 		}
 	}
-	
+
 	public Inventario getInventario() {
 		return this.inventario;
 	}
-	
+
 	public Pago getPago(String idPago) {
 		return this.pagos.get(idPago);
 	}
-	
-	public String getNombreGaleria() {
+
+	public String getNombre() {
 		return this.nombre;
 	}
 //<x=============================================================================================================x>
-	
-	
-	
-//< Adders >=====================================================================================================x>
+
+
+
+	//< Adders >=====================================================================================================x>
 	public void addUsuario(Usuario usuario, String tipo) {
 		try {
 			switch (tipo) {
-			case "Cliente":
-				this.clientes.put(usuario.getID(), (Cliente) usuario);
-				Guardador.guardarClientes(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "clientes.csv", 
-					this.clientes.values());
-			case "Cajero":
-				this.cajeros.put(usuario.getID(), (Cajero) usuario);
-				Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
-					this.cajeros.values(), this.operadores.values());
-			case "Operador":
-				this.operadores.put(usuario.getID(), (Operador) usuario);
-				Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
-					this.cajeros.values(), this.operadores.values());
-			case "Propietario":
-				this.propietarios.put(usuario.getID(), (Propietario) usuario);
-				Guardador.guardarPropietarios(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "propietarios.csv",
-					this.propietarios.values());
+				case "Cliente":
+					this.clientes.put(usuario.getID(), (Cliente) usuario);
+					Guardador.guardarClientes(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "clientes.csv",
+							this.clientes.values());
+				case "Cajero":
+					this.cajeros.put(usuario.getID(), (Cajero) usuario);
+					Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
+							this.cajeros.values(), this.operadores.values());
+				case "Operador":
+					this.operadores.put(usuario.getID(), (Operador) usuario);
+					Guardador.guardarEmpleados(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "empleados.csv",
+							this.cajeros.values(), this.operadores.values());
+				case "Propietario":
+					this.propietarios.put(usuario.getID(), (Propietario) usuario);
+					Guardador.guardarPropietarios(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "propietarios.csv",
+							this.propietarios.values());
 			}
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
+
+
 	public void addPieza(Pieza pieza) {
 		this.inventario.addPieza(pieza);
 	}
-	
-	
+
+
 	public void addPago(Pago pago) throws Exception {
-		this.pagos.put(pago.getID(), pago);
+		this.pagos.put(pago.getIdPago(), pago);
 		Guardador.guardarPagos(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "pagos.csv",
 				this.pagos.values());
 	}

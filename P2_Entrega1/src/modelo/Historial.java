@@ -38,6 +38,11 @@ public class Historial {
     return id;
   }
 
+  public String getIdHistorial() {
+    return this.idHistorial.toString();
+  }
+
+
   public Pieza getPieza() {
     return pieza;
   }
