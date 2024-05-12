@@ -72,6 +72,10 @@ public class Galeria {
 	public Pago getPago(String idPago) {
 		return this.pagos.get(idPago);
 	}
+	
+	public String getNombreGaleria() {
+		return this.nombre;
+	}
 //<x=============================================================================================================x>
 	
 	
