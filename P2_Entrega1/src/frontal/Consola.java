@@ -22,6 +22,7 @@ public abstract class Consola {
 		throw new Exception("El ID del usuario o la clave no son correctas");
 	}
 	
+	
 	protected String getNombreGaleria() {
 		return this.galeria.getNombre();
 	}
