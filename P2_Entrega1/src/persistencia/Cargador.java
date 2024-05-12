@@ -62,8 +62,6 @@ public class Cargador {
 	//<x========================================================================================================x>
 		
 	public void cargarEmpleados(String rutaArchivo, Map<String, Cajero> cajeros, Map<String, Operador> operadores) throws IOException {
-		Map<String, Cajero> cajerosCarga = new HashMap<String, Cajero>();
-		Map<String, Operador> operadoresCarga = new HashMap<String, Operador>();
 		
 		FileReader file = new FileReader(rutaArchivo);
 		BufferedReader br = new BufferedReader(file);
@@ -74,17 +72,14 @@ public class Cargador {
 			linea = l.split(";");
 			if(linea[3].equals("Cajero")) {
 				Cajero empleado = new Cajero(linea[0], linea[1], linea[2]);
-				cajerosCarga.put(linea[0], empleado);
+				cajeros.put(linea[0], empleado);
 			} else if(linea[3].equals("Operador")) {
 				Operador empleado = new Operador(linea[0], linea[1], linea[2]);
-				operadoresCarga.put(linea[0], empleado);
+				operadores.put(linea[0], empleado);
 			}
 			l = br.readLine();
 		}
-		
 		br.close();
-		cajerosCarga = cajeros;
-		operadoresCarga = operadores;
 		}
 		
 	//<x========================================================================================================x>

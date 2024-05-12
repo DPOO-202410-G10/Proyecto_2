@@ -3,8 +3,10 @@ package frontal;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 
 import modelo.Galeria;
+import modelo.Usuario;
 
 public abstract class Consola {
 	protected Galeria galeria;
@@ -15,17 +17,27 @@ public abstract class Consola {
 		this.galeria = galeria;
 	}
 	
-	protected boolean iniciarSesion(String idUsuario, String contrasenia) throws Exception {
-		if (this.galeria.getUsuario(idUsuario).login(contrasenia)) {
-			return true;
+	protected Usuario iniciarSesion(String idUsuario, String contrasenia, String tipoUsuario) throws Exception {
+		if (this.galeria.getUsuario(idUsuario, tipoUsuario).login(contrasenia)) {
+			return this.galeria.getUsuario(idUsuario, tipoUsuario);
 		}
 		throw new Exception("El ID del usuario o la clave no son correctas");
 	}
 	
 	
+	
 	protected String getNombreGaleria() {
 		return this.galeria.getNombre();
 	}
+	
+	protected Collection<String> historialPieza(String idPieza){
+		return null;
+	}
+	
+	protected Collection<String> historialArtista(String nombreArtista){
+		return null;
+	}
+	
 	
 	
 	public abstract void mostrarMenu();

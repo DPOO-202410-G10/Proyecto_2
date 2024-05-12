@@ -18,14 +18,15 @@ import usuarios.Propietario;
 public class Guardador {
 	
 	public static void guardarInformacion(String rutaArchivo, String informacion) throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
+		writer.write("\n");
 		writer.write(informacion);
 		writer.close();
 	}
 	
 	
 	public static void guardarPiezas(String rutaArchivo, Collection<Pieza> piezas) throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Pieza pieza: piezas) {
 			writer.write(pieza.toString());
 		}
@@ -36,7 +37,7 @@ public class Guardador {
 	public static void guardarEmpleados(String rutaArchivo, Collection<Cajero> cajeros, Collection<Operador> operadores) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Cajero cajero: cajeros) {
 			writer.write(cajero.toString());
 		}
@@ -50,7 +51,7 @@ public class Guardador {
 	public static void guardarClientes(String rutaArchivo, Collection<Cliente> clientes) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Cliente cliente: clientes) {
 			writer.write(cliente.toString());
 		}
@@ -61,7 +62,7 @@ public class Guardador {
 	public static void guardarPropietarios(String rutaArchivo, Collection<Propietario> propietarios) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Propietario propietario: propietarios) {
 			writer.write(propietario.toString());
 		}
@@ -72,7 +73,7 @@ public class Guardador {
 	public static void guardarPagos(String rutaArchivo, Collection<Pago> pagos) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Pago pago: pagos) {
 			writer.write(pago.toString());
 		}
@@ -81,7 +82,7 @@ public class Guardador {
 	
 	
 	public static void guardarHistorial(String rutaArchivo, Subasta subasta) throws IOException, Exception {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Historial historial: subasta.getHistoriales().values()) {
 			writer.write(historial.toString());
 		}
@@ -92,7 +93,7 @@ public class Guardador {
 	public static void resetSubastaActual(String rutaArchivo, Subasta subasta) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		writer.write("idSubasta;estadoSubasta");
 		writer.write(subasta.toString());
 		writer.write("idHistorial;idPieza;[valor:idCliente]");
@@ -103,7 +104,7 @@ public class Guardador {
 	public static void guardarPiezasClientes(String rutaArchivo, Collection<Pieza> piezas, Collection<Cliente> clientes) throws Exception {
 		eliminarArchivo(rutaArchivo);
 		crearArchivo(rutaArchivo);
-		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo, true));
 		for (Pieza pieza: piezas) {
 			writer.write("Pieza"+pieza.getIdPieza());
 		}
