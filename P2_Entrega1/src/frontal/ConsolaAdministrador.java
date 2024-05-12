@@ -1,11 +1,21 @@
 package frontal;
 
 import java.io.IOException;
+import java.util.Map;
 
+import modelo.Pieza;
+import modelo.Subasta;
 import usuarios.Administrador;
+import usuarios.Cliente;
 
 public class ConsolaAdministrador extends Consola{
 	private Administrador administrador;
+	private Pieza pieza;
+	private Cliente cliente;
+	private Subasta subastas;
+	private Map<String,Cliente> clientes;
+	private Map<String,Pieza> piezas;
+	
 	
 	public ConsolaAdministrador() throws IOException {
 		super();
@@ -54,7 +64,7 @@ public class ConsolaAdministrador extends Consola{
 	}
 	
 	private void confirmarVenta() {
-		
+		administrador.confirmarVenta(pieza);
 	}
 
 	private void registrarEmpleado() throws IOException {
@@ -81,15 +91,15 @@ public class ConsolaAdministrador extends Consola{
 	}
 	
 	private void cambiarCupo() {
-		
+		administrador.aumentarNumComprasCliente(cliente);
 	}
 	
 	private void crearSubasta() {
-		
+		administrador.crearSubasta(clientes, piezas, subastas);
 	}
 	
 	private void activarSubasta() {
-		
+		subastas.activarSubasta(piezas, clientes);
 	}
 	
 	private void getHistorialPieza() {
