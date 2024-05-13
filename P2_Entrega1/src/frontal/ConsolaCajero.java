@@ -55,7 +55,7 @@ public class ConsolaCajero extends Consola{
 	}
 	
 	private void getHistorialPieza() {
-		
+		//TODO: test
 	}
 	
 	private void getHistorialArtista() {
