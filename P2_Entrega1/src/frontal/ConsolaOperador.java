@@ -1,10 +1,19 @@
 package frontal;
 
 import java.io.IOException;
+
+import modelo.Historial;
+import modelo.Subasta;
 import usuarios.Operador;
 
 public class ConsolaOperador extends Consola {
 	private Operador operador;
+	private String idComprador;
+	private String idCliente;
+	private int valor;
+	private String tituloPieza;
+	private Subasta subastas;
+	private Historial historial;
 	
 	public ConsolaOperador() throws IOException {
 		super();
@@ -46,23 +55,23 @@ public class ConsolaOperador extends Consola {
 	
 	
 	private void ingrearASubasta() {
-		
+		subastas.estaCliente(idCliente);
 	}
 	
 	private void crearHistorial() {
-		
+		operador.crearHistorial(tituloPieza);
 	}
 	
 	private void crearPuja() {
-		
+		operador.aniadirPuja(idComprador, valor);
 	}
 	
 	private void eliminarPuja() {
-		
+		operador.eliminarPuja();
 	}
 	
 	private void cerrarHistorial() {
-		
+		subastas.removeHistorial(historial);
 	}
 
 	
