@@ -8,18 +8,13 @@ import usuarios.Operador;
 
 public class ConsolaOperador extends Consola {
 	private Operador operador;
-	private String idComprador;
-	private String idCliente;
-	private int valor;
-	private String tituloPieza;
-	private Subasta subastas;
-	private Historial historial;
 	
-	public ConsolaOperador() throws IOException {
+	
+	public ConsolaOperador() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaOperador consola = new ConsolaOperador();
 		consola.mostrarMenu();
 	}
@@ -41,6 +36,8 @@ public class ConsolaOperador extends Consola {
 					System.out.println(" 3. Crear puja");
 					System.out.println(" 4. Elimianar puja");
 					System.out.println(" 5. Cerrar historial");
+					System.out.println(" 6. Ver historial pieza");
+					System.out.println(" 7. Ver historial artista");
 					System.out.println(" 0. Salir");
 					opcion = input("Seleccione una opción:\t");
 					System.out.println("<x=====================================================x>");
@@ -55,15 +52,12 @@ public class ConsolaOperador extends Consola {
 	
 	
 	private void ingrearASubasta() {
-		subastas.estaCliente(idCliente);
 	}
 	
 	private void crearHistorial() {
-		operador.crearHistorial(tituloPieza);
 	}
 	
 	private void crearPuja() {
-		operador.aniadirPuja(idComprador, valor);
 	}
 	
 	private void eliminarPuja() {
@@ -71,13 +65,12 @@ public class ConsolaOperador extends Consola {
 	}
 	
 	private void cerrarHistorial() {
-		subastas.removeHistorial(historial);
 	}
 
 	
 	
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			ingrearASubasta();
@@ -93,6 +86,14 @@ public class ConsolaOperador extends Consola {
 			break;
 		case "5":
 			cerrarHistorial();
+			break;
+		case "6":
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.operador.historialPieza(this.galeria.getPagos(), idPieza));
+			break;
+		case "7":
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.operador.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.operador, super.galeria.getPagos());
 			break;
 		case "0":
 			System.out.println("Gracias por ser parte de " + super.getNombreGaleria());

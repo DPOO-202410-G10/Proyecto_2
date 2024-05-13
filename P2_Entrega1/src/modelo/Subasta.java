@@ -46,6 +46,10 @@ public class Subasta {
     public Map<String, Historial> getHistoriales() {
         return historiales;
     }
+    
+    public String getEstado() {
+    	return this.estado;
+    }
 
     public String getId() {
         return this.idSubasta;

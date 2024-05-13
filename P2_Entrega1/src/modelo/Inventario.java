@@ -19,14 +19,14 @@ public class Inventario {
 	
 	
 //< Metodos >=====================================================================================================x>
-	public void addPieza(Pieza pieza) {
+	public void addPieza(Pieza pieza) throws Exception {
 		if (getPieza(pieza.getIdPieza()) != null) {
 			this.piezas.get("bodega").put(pieza.getIdPieza(), pieza);
 		}
 	}
 	
 	
-	public void cambiarEstadoPieza(String idPieza, String estadoNuevo) {
+	public void cambiarEstadoPieza(String idPieza, String estadoNuevo) throws Exception {
 		for (String estado: this.piezas.keySet()) {
 			if (piezas.get(estado).containsKey(idPieza) && !estadoNuevo.equals(estado)) {
 				piezas.get(estado).remove(idPieza);
@@ -36,13 +36,17 @@ public class Inventario {
 	}
 	
 	
-	public Pieza getPieza(String idPieza) {
+	public Pieza getPieza(String idPieza) throws Exception {
 		for (Map<String, Pieza> conjuntos: this.piezas.values()) {
 			if (conjuntos.containsKey(idPieza)) {
 				return conjuntos.get(idPieza);
 			}
 		}
-		return null;
+		throw new Exception("La pieza no se encuentra registrada");
+	}
+	
+	public Map<String, Map<String, Pieza>> getPiezas(){
+		return this.piezas;
 	}
 //<x==============================================================================================================x>
 }

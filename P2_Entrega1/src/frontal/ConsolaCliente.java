@@ -1,7 +1,5 @@
 package frontal;
 
-import java.io.IOException;
-
 import usuarios.Administrador;
 import usuarios.Cliente;
 import usuarios.Propietario;
@@ -10,11 +8,11 @@ public class ConsolaCliente extends Consola {
 	private Cliente cliente;
 	private Propietario propietario;
 	
-	public ConsolaCliente() throws IOException {
+	public ConsolaCliente() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaCliente consola = new ConsolaCliente();
 		consola.mostrarMenu();
 	}
@@ -55,19 +53,11 @@ public class ConsolaCliente extends Consola {
 	private void consultarPiezas() {
 		propietario.consultarPiezasBajoDominio();
 	}
-	
-	private void getHistorialPieza() {
-		
-	}
-	
-	private void getHistorialArtista() {
-		
-	}
 
 	
 	
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			pagosRealizados();
@@ -75,11 +65,13 @@ public class ConsolaCliente extends Consola {
 		case "2":
 			consultarPiezas();
 			break;
-		case "3":
-			getHistorialPieza();
+		case "7":
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.cliente.historialPieza(this.galeria.getPagos(), idPieza));
 			break;
-		case "4":
-			getHistorialArtista();
+		case "8":
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.cliente.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.cliente, super.galeria.getPagos());
 			break;
 		case "0":
 			System.out.println("Gracias por ser parte de " + super.getNombreGaleria());

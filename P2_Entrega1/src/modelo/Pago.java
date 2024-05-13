@@ -54,8 +54,8 @@ public class Pago {
 	public double getPrecioFinal() {
 		return precioFinal;
 	}
-	public void setPrecioFinal(float precioFinal) {
-		this.precioFinal = precioFinal;
+	public void setPrecioFinal(double precioFinal2) {
+		this.precioFinal = precioFinal2;
 	}
 	public Pieza getPieza() {
 		return pieza;
