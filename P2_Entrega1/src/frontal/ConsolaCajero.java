@@ -1,9 +1,17 @@
 package frontal;
 
+import java.io.IOException;
+
+import modelo.Pago;
+import modelo.Pieza;
 import usuarios.Cajero;
+import usuarios.Cliente;
 
 public class ConsolaCajero extends Consola{
 	private Cajero cajero;
+	private Cliente cliente;
+	private Pieza piezas;
+	private Pago pagos;
 	
 	public ConsolaCajero() throws Exception {
 		super();
@@ -43,7 +51,7 @@ public class ConsolaCajero extends Consola{
 	
 	
 	private void generarPago() {
-		
+		cajero.generarPago(cliente, piezas, pagos);
 	}
 	
 	

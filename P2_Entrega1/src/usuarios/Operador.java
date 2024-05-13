@@ -95,7 +95,7 @@ public class Operador extends Usuario{
 			System.out.println("No se encontró un historial para la pieza: " + tituloPieza);
 			return null;
 		}
-		Map<Integer, String> historialMap = historial.getHistorial();
+		Map<Integer, String> historialMap = historial.getCompradorPorPuja();
 		int ultimaPuja = Collections.max(historialMap.keySet());
 		String idComprador = historialMap.get(ultimaPuja);
 		

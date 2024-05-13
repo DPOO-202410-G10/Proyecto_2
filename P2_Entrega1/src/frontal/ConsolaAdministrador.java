@@ -3,7 +3,10 @@ package frontal;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import modelo.Pieza;
+import modelo.Subasta;
 import usuarios.Administrador;
+import usuarios.Cliente;
 
 public class ConsolaAdministrador extends Consola{
 	private Administrador administrador;
@@ -51,11 +54,11 @@ public class ConsolaAdministrador extends Consola{
 	
 	
 	private void crearPieza() {
-		
 	}
 	
-	private void confirmarVenta() {
-		
+	private void confirmarVenta() throws Exception {
+		String idPieza = input("Ingrese el id de la pieza: ");
+		administrador.confirmarVenta(super.galeria.getInventario().getPieza(idPieza));
 	}
 
 	private void registrarEmpleado() throws IOException {
@@ -82,22 +85,21 @@ public class ConsolaAdministrador extends Consola{
 	}
 	
 	private void cambiarCupo() {
-		
+		String idCliente = input("Ingrese el id del cliente: ");
+		int aumento = Integer.parseInt(input("Ingrese el nuevo monto maximo: "));
+		administrador.aumentarNumComprasCliente((Cliente) this.galeria.getUsuario(idCliente, "Cliente"));
 	}
 	
 	private void crearSubasta() {
-		
 	}
 	
 	private void activarSubasta() {
-		
 	}
 	
 	private void getHistorialComprador() {
 		
 	}
-	
-	
+
 	@Override
 	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {

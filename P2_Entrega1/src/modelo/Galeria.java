@@ -119,7 +119,7 @@ public class Galeria {
 	
 	
 	public void addPago(Pago pago) throws Exception {
-		this.pagos.put(pago.getID(), pago);
+		this.pagos.put(pago.getIdPago(), pago);
 		Guardador.guardarPagos(File.separator + "Entrega_2" + File.separator + "data" + File.separator + "pagos.csv",
 				this.pagos.values());
 	}

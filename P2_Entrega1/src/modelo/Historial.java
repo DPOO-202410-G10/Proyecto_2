@@ -1,61 +1,65 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Historial {
-	//< Atributos >
-	private String idHistorial;
-    private Pieza pieza;
-    private Map<Integer, String> historial; 
-    
-    
-    //< Constructor >
-    public Historial(String idHistorial, Pieza pieza, Map<Integer, String> historial) {
-    	this.idHistorial = idHistorial;
-        this.setPieza(pieza);
-        this.historial = historial;     
-    }
-    
-    
-    
-//< Metodos >=====================================================================================================x>
-    public void agregarAlMapa(int valorPuja, String idComprador) {
-        historial.put(valorPuja, idComprador);
-    }
-//<x==============================================================================================================x>
-    
-    
+	private static Integer cantidadHistoriales = 0;
+	private final String idHistorial;
+	private final Pieza pieza;
+	private final Map<Integer, String> compradorPorPuja;
+	private final double valorPuja;
 
-//< Getters >=====================================================================================================x>
-    public String getId() {
-    	return this.idHistorial;
-    }
-//<x==============================================================================================================x>
 
+
+	public Historial(Pieza pieza, double valorPuja) {
+		this.pieza = pieza;
+		this.compradorPorPuja = new HashMap<>();
+		this.valorPuja = valorPuja;
+		this.idHistorial = "" +( cantidadHistoriales + 1);
+		cantidadHistoriales += 1;
+	}
+	public Historial(String idHistorial, Pieza pieza, Map<Integer, String> pujas) {
+		this.pieza = pieza;
+		this.compradorPorPuja = pujas;
+		this.valorPuja = pieza.getValorInicial();
+		this.idHistorial = idHistorial;
+		cantidadHistoriales += 1;
+	}
+
+
+	
+
+	public void agregarAlMapa(double valorPuja, String idComprador) {
+		if (valorPuja > this.valorPuja) compradorPorPuja.put((int)valorPuja, idComprador);
+	}
+
+	public String getIdComprador() {
+		double maximo = Double.MIN_VALUE;
+		String id = null;
+		for (Map.Entry<Integer, String> puja : compradorPorPuja.entrySet()) {
+			if (puja.getKey() > maximo) {
+				maximo = puja.getKey();
+				id = puja.getValue();
+			}
+		}
+
+		return id;
+	}
+
+	public String getIdHistorial() {
+		return this.idHistorial.toString();
+	}
 
 
 	public Pieza getPieza() {
 		return pieza;
 	}
-
-
-
-	public void setPieza(Pieza pieza) {
-		this.pieza = pieza;
+	
+	public Map<Integer, String> getCompradorPorPuja() {
+		return compradorPorPuja;
 	}
-
-
-
-	public Map<Integer, String> getHistorial() {
-		return historial;
-	}
-
-
-
-	public void setHistorial(Map<Integer, String> historial) {
-		this.historial = historial;
-	}
+	
+	
 }
+//acabado

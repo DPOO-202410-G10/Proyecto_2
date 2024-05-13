@@ -20,7 +20,7 @@ public class Cajero extends Usuario {
 		String idPago = cliente.getID() + "_" + piezas.getIdPieza() + "_" + fechaActual;
 		double precioFinal = pagos.getPrecioFinal();
 		int iva = (int) (precioFinal * pagos.getIva());
-		Pago pago = new Pago(idPago, cliente, piezas, fechaActual, iva, precioFinal);
+		Pago pago = new Pago(idPago,fechaActual,iva, precioFinal, piezas,cliente);
 		
 		System.out.println("Se ha generado un pago por la pieza " + piezas.getTitulo() + " .");
 	}
