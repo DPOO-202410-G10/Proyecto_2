@@ -1,4 +1,5 @@
 package pruebas;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,7 +53,7 @@ public class pruebas {
         Pieza pieza = new Pieza("123", "Obra de arte", "Ciudad", 10.5, 20.7, "2024-12-31", true,
                 100.0, Arrays.asList("Autor 1", "Autor 2"), "Propietario", "2020");
 
-        // Probamos los setters
+    
         pieza.setIdPieza("456");
         assertEquals("456", pieza.getIdPieza());
 
