@@ -46,27 +46,21 @@ public class ConsolaCajero extends Consola{
 		
 	}
 	
-	private void getHistorialPieza() {
-		
-	}
-	
-	private void getHistorialArtista() {
-		
-	}
-
 	
 	
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			generarPago();
 			break;
 		case "2":
-			getHistorialPieza();
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.cajero.historialPieza(this.galeria.getPagos(), idPieza));
 			break;
 		case "3":
-			getHistorialArtista();
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.cajero.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.cajero, super.galeria.getPagos());
 			break;
 		case "0":
 			System.out.println("Gracias por ser parte de " + super.getNombreGaleria());

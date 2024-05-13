@@ -28,8 +28,8 @@ public abstract class Usuario implements InformacionHistorial {
 		return false;
 	}
 	
-	public Collection<Pago> historialPieza(Map<String,Pago> pagos, String idPieza) throws Exception{
-		Collection<Pago> pagosRegistradosPieza = new LinkedList<Pago>();
+	public LinkedList<Pago> historialPieza(Map<String,Pago> pagos, String idPieza) throws Exception{
+		LinkedList<Pago> pagosRegistradosPieza = new LinkedList<Pago>();
 		for (Pago pago: pagos.values()) {
 			if (pago.getPieza().getIdPieza().equals(idPieza)) {
 				pagosRegistradosPieza.add(pago);
@@ -42,8 +42,8 @@ public abstract class Usuario implements InformacionHistorial {
 		}
 	}
 	
-	public Collection<Pieza> historialArtista(Map<String, Map<String, Pieza>> piezas, String nombreArtista) throws Exception{
-		Collection<Pieza> piezasArtista = new LinkedList<Pieza>();
+	public LinkedList<Pieza> historialArtista(Map<String, Map<String, Pieza>> piezas, String nombreArtista) throws Exception{
+		LinkedList<Pieza> piezasArtista = new LinkedList<Pieza>();
 		for (Map<String, Pieza> piezasClasificadas: piezas.values()) {
 			for (Pieza pieza: piezasClasificadas.values()) {
 			for (String autor: pieza.getAutores()) {

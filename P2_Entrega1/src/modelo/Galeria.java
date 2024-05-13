@@ -78,6 +78,10 @@ public class Galeria {
 	public String getNombre() {
 		return this.nombre;
 	}
+	
+	public Map<String, Pago> getPagos(){
+		return this.pagos;
+	}
 //<x=============================================================================================================x>
 	
 	

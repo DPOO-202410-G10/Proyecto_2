@@ -1,6 +1,7 @@
 package frontal;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 import usuarios.Administrador;
 
@@ -92,21 +93,13 @@ public class ConsolaAdministrador extends Consola{
 		
 	}
 	
-	private void getHistorialPieza() {
-		
-	}
-	
-	private void getHistorialArtista() {
-		
-	}
-	
 	private void getHistorialComprador() {
 		
 	}
 	
 	
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			crearPieza();
@@ -132,10 +125,12 @@ public class ConsolaAdministrador extends Consola{
 			activarSubasta();
 			break;
 		case "7":
-			getHistorialPieza();
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.administrador.historialPieza(this.galeria.getPagos(), idPieza));
 			break;
 		case "8":
-			getHistorialArtista();
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.administrador.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.administrador, super.galeria.getPagos());
 			break;
 		case "9":
 			getHistorialComprador();
