@@ -1,3 +1,4 @@
+package pruebas;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class PagoTest {
         double precioFinal = 120.0;
         Pieza pieza = new Pieza("2", "Otra obra de arte", "Otra ciudad", 15.5, 25.7, "2025-12-31", true,
                 150.0, Arrays.asList("Autor 3", "Autor 4"), "Otro propietario", "2021");
-        Cliente cliente = new Cliente("2", "Cliente 2", "correo2@example.com", "contraseña2");
+        Cliente cliente = new Cliente("2", "Cliente 2", "correo2@example.com", false, "subasta", "contraseña2", 3);
 
         pago.setIdPago(idPago);
         pago.setFecha(fecha);
