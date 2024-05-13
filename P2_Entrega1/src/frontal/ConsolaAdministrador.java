@@ -60,7 +60,7 @@ public class ConsolaAdministrador extends Consola{
 	
 	
 	private void crearPieza() {
-		
+		administrador.registrarPieza(pieza);
 	}
 	
 	private void confirmarVenta() {
