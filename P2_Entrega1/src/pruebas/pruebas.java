@@ -35,5 +35,5 @@ public class PiezaTest {
         assertEquals(anioCreacion, pieza.getAnioCreacion());
     }
 
-    // Puedes agregar más pruebas según las funcionalidades de tu clase Pieza.
+    
 }
