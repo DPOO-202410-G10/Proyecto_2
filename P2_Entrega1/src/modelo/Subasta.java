@@ -67,6 +67,12 @@ public class Subasta {
     public void removeHistorial(Historial historial) {
         this.historiales.remove(historial.getIdHistorial());
     }
+    
+    public void activarSubasta(Map<String, Pieza> piezas, Map<String, Cliente> clientes) {
+    	this.estado = "ABIERTO";
+    	this.piezas = piezas;
+    	this.clientes = clientes;
+    }
 
 
 }
