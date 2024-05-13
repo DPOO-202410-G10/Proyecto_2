@@ -7,10 +7,10 @@ import usuarios.Administrador;
 public class ConsolaAdministrador extends Consola{
 	private Administrador administrador;
 	
-	public ConsolaAdministrador() throws IOException {
+	public ConsolaAdministrador() throws Exception {
 		super();
 	}
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaAdministrador consola = new ConsolaAdministrador();
 		consola.mostrarMenu();
 	}

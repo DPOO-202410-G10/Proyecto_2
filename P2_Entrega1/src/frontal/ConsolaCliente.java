@@ -1,18 +1,16 @@
 package frontal;
 
-import java.io.IOException;
-
 import usuarios.Administrador;
 import usuarios.Cliente;
 
 public class ConsolaCliente extends Consola {
 	private Cliente cliente;
 	
-	public ConsolaCliente() throws IOException {
+	public ConsolaCliente() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaCliente consola = new ConsolaCliente();
 		consola.mostrarMenu();
 	}

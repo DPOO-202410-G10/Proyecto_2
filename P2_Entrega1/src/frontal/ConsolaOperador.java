@@ -1,16 +1,15 @@
 package frontal;
 
-import java.io.IOException;
 import usuarios.Operador;
 
 public class ConsolaOperador extends Consola {
 	private Operador operador;
 	
-	public ConsolaOperador() throws IOException {
+	public ConsolaOperador() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaOperador consola = new ConsolaOperador();
 		consola.mostrarMenu();
 	}

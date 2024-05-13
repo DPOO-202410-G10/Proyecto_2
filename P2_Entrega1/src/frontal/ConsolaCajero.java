@@ -1,16 +1,15 @@
 package frontal;
 
-import java.io.IOException;
 import usuarios.Cajero;
 
 public class ConsolaCajero extends Consola{
 	private Cajero cajero;
 	
-	public ConsolaCajero() throws IOException {
+	public ConsolaCajero() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaCajero consola = new ConsolaCajero();
 		consola.mostrarMenu();
 	}

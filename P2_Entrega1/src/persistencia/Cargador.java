@@ -135,7 +135,7 @@ public class Cargador {
 	
 	//<x========================================================================================================x>
 	
-	public Map<String, Propietario> cargarPropietarios(String rutaArchivo, Inventario inventario) throws IOException{
+	public Map<String, Propietario> cargarPropietarios(String rutaArchivo, Inventario inventario) throws Exception{
 		Map<String, Propietario> propietarios = new HashMap<String, Propietario>();
 		
 		FileReader file = new FileReader(rutaArchivo);
@@ -171,7 +171,7 @@ public class Cargador {
 	
 	//<x========================================================================================================x>
 	
-	public Map<String, Pago> cargarPagos(String rutaArchivo, Map<String, Cliente> clientes, Inventario inventario) throws IOException{
+	public Map<String, Pago> cargarPagos(String rutaArchivo, Map<String, Cliente> clientes, Inventario inventario) throws NumberFormatException, Exception{
 		Map<String, Pago> pagos = new HashMap<String, Pago>();
 		
 		FileReader file = new FileReader(rutaArchivo);
@@ -193,7 +193,7 @@ public class Cargador {
 	
 	//<x========================================================================================================x>
 	
-	public Subasta cargarSubasta(String rutaArchivo, Map<String, Cliente> clientes, Inventario inventario) throws IOException {
+	public Subasta cargarSubasta(String rutaArchivo, Map<String, Cliente> clientes, Inventario inventario) throws Exception {
 		Subasta subasta = null;
 		
 		FileReader file = new FileReader(rutaArchivo);
@@ -233,7 +233,7 @@ public class Cargador {
 	
 	//<x========================================================================================================x>
 	
-	private Map[] clientesPiezasSubasta(Map<String, Cliente> clientes, Inventario inventario) throws IOException{
+	private Map[] clientesPiezasSubasta(Map<String, Cliente> clientes, Inventario inventario) throws Exception{
 		Map<String, Cliente> usuariosSubasta = new HashMap<String, Cliente>();
 		Map<String, Pieza> piezaSubasta = new HashMap<String, Pieza>();
 		FileReader file = new FileReader("data" + File.separator + "piezas_clientes_subasta.csv");

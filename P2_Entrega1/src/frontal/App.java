@@ -84,7 +84,7 @@ public class App {
 	
 	
 //< MAIN >=======================================================================================================x>
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		App aplicacion = new App();
 		Galeria galeria = new Galeria("Galeria Alpes");
 		galeria.cargarDatos();

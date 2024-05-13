@@ -1,7 +1,6 @@
 package modelo;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +36,7 @@ public class Galeria {
 	
 	
 //< Carga de Datos >=============================================================================================x>
-	public void cargarDatos() throws IOException {
+	public void cargarDatos() throws Exception {
 		Cargador cargador = new Cargador();
 		this.administrador = cargador.cargarAdmin("data" + File.separator + "administrador.csv");
 		this.clientes = cargador.cargarClientes("data" + File.separator + "clientes.csv");
@@ -110,7 +109,7 @@ public class Galeria {
 	}
 	
 	
-	public void addPieza(Pieza pieza) {
+	public void addPieza(Pieza pieza) throws Exception {
 		this.inventario.addPieza(pieza);
 	}
 	

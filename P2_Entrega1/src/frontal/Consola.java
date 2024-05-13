@@ -11,7 +11,7 @@ import modelo.Usuario;
 public abstract class Consola {
 	protected Galeria galeria;
 	
-	public Consola() throws IOException {
+	public Consola() throws Exception {
 		Galeria galeria = new Galeria("CasaSubasta");
 		galeria.cargarDatos();
 		this.galeria = galeria;
