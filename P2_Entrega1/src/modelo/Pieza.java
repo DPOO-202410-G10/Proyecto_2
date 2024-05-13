@@ -4,7 +4,7 @@ import java.util.List;
 
 import usuarios.Propietario;
 
-public abstract class Pieza {
+public class Pieza {
 	protected String idPieza;
 	protected String titulo;
 	protected String lugarCreacion;

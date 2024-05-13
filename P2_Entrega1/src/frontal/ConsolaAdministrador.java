@@ -113,8 +113,7 @@ public class ConsolaAdministrador extends Consola{
 	private void getHistorialComprador() {
 		
 	}
-	
-	
+
 	@Override
 	public void ejecutarOpcion(String opcion) {
 		switch (opcion) {
