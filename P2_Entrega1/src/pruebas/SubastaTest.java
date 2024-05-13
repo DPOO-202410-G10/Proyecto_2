@@ -9,6 +9,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import modelo.Pieza;
+import modelo.Subasta;
 import usuarios.Cliente;
 import modelo.Historial;
 
@@ -68,10 +69,10 @@ public class SubastaTest {
         Cliente cliente1 = new Cliente("1", "Cliente 1", "correo1@example.com", "contraseña1");
         Cliente cliente2 = new Cliente("2", "Cliente 2", "correo2@example.com", "contraseña2");
 
-        subasta.getClientes().put(cliente1.getId(), cliente1);
+        subasta.getClientes().put(cliente1.getID(), cliente1);
 
-        assertTrue(subasta.estaCliente(cliente1.getId()));
-        assertFalse(subasta.estaCliente(cliente2.getId()));
+        assertTrue(subasta.estaCliente(cliente1.getID()));
+        assertFalse(subasta.estaCliente(cliente2.getID()));
     }
 }
 

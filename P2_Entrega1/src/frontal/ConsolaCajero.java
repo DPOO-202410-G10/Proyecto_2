@@ -1,23 +1,16 @@
 package frontal;
 
-import java.io.IOException;
-
-import modelo.Pago;
-import modelo.Pieza;
 import usuarios.Cajero;
-import usuarios.Cliente;
 
 public class ConsolaCajero extends Consola{
 	private Cajero cajero;
-	private Cliente cliente;
-	private Pieza piezas;
-	private Pago pagos;
-	
-	public ConsolaCajero() throws IOException {
+
+
+	public ConsolaCajero() throws Exception {
 		super();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaCajero consola = new ConsolaCajero();
 		consola.mostrarMenu();
 	}
@@ -51,30 +44,23 @@ public class ConsolaCajero extends Consola{
 	
 	
 	private void generarPago() {
-		cajero.generarPago(cliente, piezas, pagos);
 	}
 	
-	private void getHistorialPieza() {
-		//TODO: test
-	}
-	
-	private void getHistorialArtista() {
-		
-	}
-
 	
 	
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			generarPago();
 			break;
 		case "2":
-			getHistorialPieza();
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.cajero.historialPieza(this.galeria.getPagos(), idPieza));
 			break;
 		case "3":
-			getHistorialArtista();
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.cajero.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.cajero, super.galeria.getPagos());
 			break;
 		case "0":
 			System.out.println("Gracias por ser parte de " + super.getNombreGaleria());

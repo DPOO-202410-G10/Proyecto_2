@@ -1,26 +1,16 @@
 package frontal;
 
 import java.io.IOException;
-import java.util.Map;
-
-import modelo.Pieza;
-import modelo.Subasta;
 import usuarios.Administrador;
-import usuarios.Cliente;
 
 public class ConsolaAdministrador extends Consola{
 	private Administrador administrador;
-	private Pieza pieza;
-	private Cliente cliente;
-	private Subasta subastas;
-	private Map<String,Cliente> clientes;
-	private Map<String,Pieza> piezas;
 	
 	
-	public ConsolaAdministrador() throws IOException {
+	public ConsolaAdministrador() throws Exception {
 		super();
 	}
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		ConsolaAdministrador consola = new ConsolaAdministrador();
 		consola.mostrarMenu();
 	}
@@ -60,11 +50,9 @@ public class ConsolaAdministrador extends Consola{
 	
 	
 	private void crearPieza() {
-		administrador.registrarPieza(pieza);
 	}
 	
 	private void confirmarVenta() {
-		administrador.confirmarVenta(pieza);
 	}
 
 	private void registrarEmpleado() throws IOException {
@@ -91,23 +79,12 @@ public class ConsolaAdministrador extends Consola{
 	}
 	
 	private void cambiarCupo() {
-		administrador.aumentarNumComprasCliente(cliente);
 	}
 	
 	private void crearSubasta() {
-		administrador.crearSubasta(clientes, piezas, subastas);
 	}
 	
 	private void activarSubasta() {
-		subastas.activarSubasta(piezas, clientes);
-	}
-	
-	private void getHistorialPieza() {
-		
-	}
-	
-	private void getHistorialArtista() {
-		
 	}
 	
 	private void getHistorialComprador() {
@@ -115,7 +92,7 @@ public class ConsolaAdministrador extends Consola{
 	}
 
 	@Override
-	public void ejecutarOpcion(String opcion) {
+	public void ejecutarOpcion(String opcion) throws Exception {
 		switch (opcion) {
 		case "1":
 			crearPieza();
@@ -141,10 +118,12 @@ public class ConsolaAdministrador extends Consola{
 			activarSubasta();
 			break;
 		case "7":
-			getHistorialPieza();
+			String idPieza = input("Ingrese el id de la pieza a consultar: ");
+			super.historialPieza(this.administrador.historialPieza(this.galeria.getPagos(), idPieza));
 			break;
 		case "8":
-			getHistorialArtista();
+			String artista = input("Ingrese el nombre del artista a consultar: ");
+			super.historialArtista(this.administrador.historialArtista(super.galeria.getInventario().getPiezas(), artista), this.administrador, super.galeria.getPagos());
 			break;
 		case "9":
 			getHistorialComprador();
