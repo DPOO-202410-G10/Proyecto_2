@@ -4,9 +4,11 @@ import java.io.IOException;
 
 import usuarios.Administrador;
 import usuarios.Cliente;
+import usuarios.Propietario;
 
 public class ConsolaCliente extends Consola {
 	private Cliente cliente;
+	private Propietario propietario;
 	
 	public ConsolaCliente() throws IOException {
 		super();
@@ -47,11 +49,11 @@ public class ConsolaCliente extends Consola {
 	
 	
 	private void pagosRealizados() {
-		
+		cliente.getNumCompras();
 	}
 	
 	private void consultarPiezas() {
-		
+		propietario.consultarPiezasBajoDominio();
 	}
 	
 	private void getHistorialPieza() {
