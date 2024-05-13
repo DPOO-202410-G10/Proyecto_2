@@ -55,5 +55,11 @@ public class Historial {
 	public Pieza getPieza() {
 		return pieza;
 	}
+	
+	public Map<Integer, String> getCompradorPorPuja() {
+		return compradorPorPuja;
+	}
+	
+	
 }
 //acabado

@@ -73,6 +73,10 @@ public class Subasta {
     	this.piezas = piezas;
     	this.clientes = clientes;
     }
+    
+    public boolean estaCliente(String idCliente) {
+    	return this.clientes.containsKey(idCliente);
+    }
 
 
 }
