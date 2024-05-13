@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import modelo.Historial;
@@ -98,25 +99,31 @@ public class Cargador {
 			Pieza pieza = null;
 			switch (linea[11].toLowerCase()) {
 			case "pintura":
-				pieza = new Pintura(linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
+				pieza = new Pintura(
+						linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
 						Double.parseDouble(linea[5]), linea[6], Boolean.parseBoolean(linea[7]), Double.parseDouble(linea[8]),
-						linea[9].split(","), linea[10], caracteristicas[0], caracteristicas[1], Double.parseDouble(caracteristicas[2]));
+                        List.of(linea[9].split(",")), linea[10], caracteristicas[0], caracteristicas[1], Double.parseDouble(caracteristicas[2]));
 				break;
 			case "escultura":
-				pieza = new Escultura(linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
+				pieza = new Escultura(
+
+						linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
 						Double.parseDouble(linea[5]), linea[6], Boolean.parseBoolean(linea[7]), Double.parseDouble(linea[8]),
-						linea[9].split(","), linea[10], Double.parseDouble(caracteristicas[0]), caracteristicas[1].split(","),
+                        List.of(linea[9].split(",")), linea[10], Double.parseDouble(caracteristicas[0]), List.of(caracteristicas[1].split(",")),
 						Boolean.parseBoolean(caracteristicas[2]));
 				break;
 			case "fotografia":
-				pieza = new Fotografia(linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
+				pieza = new Fotografia(
+
+
+						linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
 						Double.parseDouble(linea[5]), linea[6], Boolean.parseBoolean(linea[7]), Double.parseDouble(linea[8]),
-						linea[9].split(","), linea[10], caracteristicas[0]);
+                        List.of(linea[9].split(",")), linea[10], caracteristicas[0]);
 				break;
 			case "impresion":
 				pieza = new Impresion(linea[0], linea[1], linea[2], linea[3], Double.parseDouble(linea[4]),
 						Double.parseDouble(linea[5]), linea[6], Boolean.parseBoolean(linea[7]), Double.parseDouble(linea[8]),
-						linea[9].split(","), linea[10], caracteristicas[0]);
+                        List.of(linea[9].split(",")), linea[10], caracteristicas[0]);
 				break;
 			}
 			
@@ -181,8 +188,9 @@ public class Cargador {
 		
 		while(l != null) {
 			linea = l.split(";");
-			Pago pago = new Pago(linea[0], clientes.get(linea[1]), inventario.getPieza(linea[2]),
-							linea[3], Integer.parseInt(linea[4]), Double.parseDouble(linea[5]));
+			Pago pago = new Pago(linea[0],linea[3], Integer.parseInt(linea[4]),Double.parseDouble(linea[5]),
+					inventario.getPieza(linea[2]),clientes.get(linea[1])
+					);
 			pagos.put(linea[0], pago);
 			l = br.readLine();
 		}
@@ -251,9 +259,8 @@ public class Cargador {
 			l = br.readLine();
 		}
 		br.close();
-		Map[] mapas = new Map[]{};
-		mapas[0] = usuariosSubasta;
-		mapas[1] = piezaSubasta;
+		Map[] mapas = new Map[]{usuariosSubasta,piezaSubasta};
+
 		return mapas;
 	}
 //<x=============================================================================================================x>
